@@ -22,5 +22,14 @@ public class Main {
         //empresa.exibirDetalhesFuncionarios();
         //Chain of Responsibility
         empresa.atribuirResposabilidade("Gerente");
+
+        // Produtos
+
+        empresa.adicionarProduto(1L, "fisico", "Notebook", 3000.0, 2.0);
+        empresa.adicionarProduto(2L, "digital", "E-book Java", 50.0, null);
+        
+        empresa.exibirDetalhesProdutos();
+        empresa.removerProduto("Notebook");
+        empresa.exibirDetalhesProdutos();
     }
 }
