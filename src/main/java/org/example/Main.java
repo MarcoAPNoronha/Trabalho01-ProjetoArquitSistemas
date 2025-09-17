@@ -5,31 +5,33 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
 
-        Empresa empresa = new Empresa("Transporte Rápido");
+        Menu.exibirMenuInicial();
+
+        //Empresa empresa = new Empresa("Transporte Rápido");
 
         //Factory Method
-        empresa.adicionarVeiculo(1, "ABC-1234");
-        empresa.adicionarVeiculo(2, "DEF-5678");
-        empresa.adicionarVeiculo(3, "GHI-9012");
+        //empresa.adicionarVeiculo(1, "ABC-1234");
+        //empresa.adicionarVeiculo(2, "DEF-5678");
+        //empresa.adicionarVeiculo(3, "GHI-9012");
 
         //empresa.exibirDetalhesVeiculos();
 
 
-        empresa.adicionarFuncionario("João", "Entregador");
-        empresa.adicionarFuncionario("Maria", "Atendente");
-        empresa.adicionarFuncionario("Carlos", "Gerente");
+        //empresa.adicionarFuncionario("João", "Entregador");
+        //empresa.adicionarFuncionario("Maria", "Atendente");
+        //empresa.adicionarFuncionario("Carlos", "Gerente");
 
         //empresa.exibirDetalhesFuncionarios();
         //Chain of Responsibility
-        empresa.atribuirResposabilidade("Gerente");
+        //empresa.atribuirResposabilidade("Gerente");
 
         // Produtos
 
-        empresa.adicionarProduto(1L, "fisico", "Notebook", 3000.0, 2.0);
-        empresa.adicionarProduto(2L, "digital", "E-book Java", 50.0, null);
+        //empresa.adicionarProduto(1L, "fisico", "Notebook", 3000.0, 2.0);
+        //empresa.adicionarProduto(2L, "digital", "E-book Java", 50.0, null);
         
-        empresa.exibirDetalhesProdutos();
-        empresa.removerProduto("Notebook");
-        empresa.exibirDetalhesProdutos();
+        //empresa.exibirDetalhesProdutos();
+        //empresa.removerProduto("Notebook");
+        //empresa.exibirDetalhesProdutos();
     }
 }
