@@ -4,52 +4,80 @@ import java.util.Scanner;
 
 public class Menu {
 
+    public static Empresa empresa;
 
-
-    public static void exibirMenuInicial() {
+    private static Empresa criarEmpresa(){
         Scanner scanner = new Scanner(  System.in);
 
         System.out.println("Digite o nome da empresa:");
         String nomeEmpresa = scanner.nextLine();
 
-        Empresa empresa = new Empresa(nomeEmpresa);
+        Menu.empresa = new Empresa(nomeEmpresa);
 
+        return empresa;
+    }
+
+    public static void exibirMenuInicial() {
+
+
+        if (Menu.empresa == null) {
+            Empresa empresa = criarEmpresa();
+        }
+
+
+        Scanner scanner = new Scanner(  System.in);
 
         System.out.println("Menu: \n" +
                 "1. Adicionar veículos. \n" +
-                "2. Adicionar funcionários. \n" +
-                "3. Atribuir responsabilidade. \n" +
-                "4. Adicionar produto. \n" +
-                "5. Remover produto. \n" +
-                "6. Exibir detalhes dos produtos.");
+                "2. Exibir detalhes dos veículos. \n" +
+                "3. Adicionar funcionários. \n" +
+                "4. Atribuir responsabilidade. \n" +
+                "5. Adicionar produto. \n" +
+                "6. Remover produto. \n" +
+                "7. Exibir detalhes dos produtos. \n" +
+                "8. Sair.");
 
         int opcao = scanner.nextInt();
 
 
         switch (opcao) {
             case 1 -> {
-                System.out.println("Informe a placa do veículo:");
+                System.out.println("------------------------------ \n" +
+                        "Informe a placa do veículo:");
                 String placa = scanner.nextLine();
+                scanner.nextLine(); // Quebra de linha
                 System.out.println("Informe o tipo do veículo:");
                 int tipo = scanner.nextInt();
                 empresa.adicionarVeiculo(tipo, placa);
                 System.out.println("Veículo adicionado com sucesso.");
+                exibirMenuInicial();
             }
             case 2 -> {
-                System.out.println("Informe o nome do funcionário:");
+                System.out.println("------------------------------");
+                empresa.exibirDetalhesVeiculos();
+                exibirMenuInicial();
+            }
+            case 3 -> {
+                System.out.println("------------------------------ \n" +
+                        "Informe o nome do funcionário:");
+                String placa = scanner.nextLine();
                 String nomeFuncionario = scanner.nextLine();
                 System.out.println("Informe o cargo do funcionário:");
                 String cargoFuncionario = scanner.nextLine();
                 empresa.adicionarFuncionario(nomeFuncionario, cargoFuncionario);
                 System.out.println("Funcionário adicionado com sucesso.");
-            }
-            case 3 -> {
-                System.out.println("A atividade é pra qual funcionário (cargo):");
-                String cargo = scanner.nextLine();
-                empresa.atribuirResposabilidade(cargo);
+                exibirMenuInicial();
             }
             case 4 -> {
-                System.out.println("ID do produto");
+                System.out.println("------------------------------ \n" +
+                        "A atividade é pra qual funcionário (cargo):");
+                String cargo = scanner.nextLine();
+                empresa.atribuirResposabilidade(cargo);
+                exibirMenuInicial();
+            }
+            case 5 -> {
+                System.out.println("------------------------------ \n" +
+                        "ID do produto");
                 Long idProduto = scanner.nextLong();
                 scanner.nextLine(); // Quebra de linha
                 System.out.println("Tipo do produto:");
@@ -63,16 +91,28 @@ public class Menu {
                 double pesoProduto = scanner.nextDouble();
                 scanner.nextLine(); // Quebra de linha
                 empresa.adicionarProduto(idProduto, tipoProduto, nomeProduto, precoProduto, pesoProduto);
-            }
-            case 5 -> {
-                System.out.println("Qual produto será removido:");
-                String nomeProduto = scanner.nextLine();
-                empresa.removerProduto(nomeProduto);
+                exibirMenuInicial();
             }
             case 6 -> {
-                empresa.exibirDetalhesProdutos();
+                System.out.println("------------------------------ \n" +
+                        "Qual produto será removido:");
+                String nomeProduto = scanner.nextLine();
+                empresa.removerProduto(nomeProduto);
+                exibirMenuInicial();
             }
-            default -> System.out.println("Opção inválida. Tente novamente.");
+            case 7 -> {
+                empresa.exibirDetalhesProdutos();
+                exibirMenuInicial();
+            }
+            case 8 -> {
+                scanner.close();
+            }
+            default -> {
+                System.out.println("------------------------------ \n" +
+                        "Opção inválida. Tente novamente.");
+                exibirMenuInicial();
+            }
         }
+
     }
 }
